@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/restaurantes.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.2.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="phonegap.js" type="text/javascript"></script>
+        <script>
+
+            document.addEventListener("deviceready", onDeviceReady, false);
+            document.addEventListener("menubutton", onMenuKeyDown, false);
+
+            function onMenuKeyDown() {
+                $("#btnMenu").click();
+            }
+            
+
+            function onDeviceReady() {
+
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <div data-role="page" id="pagina">
+
+            <div data-role="header" data-position="fixed" data-fullscreen="false">
+                <a href="#" style="border: none; background-color: #c5021a;  box-shadow: none; margin-top: 11px" onclick="atras()" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-carat-l ui-btn-icon-notext ui-btn-a ui-btn-inline">Atras</a>
+                <h3><img  src="image/header.png" style="width: 130px;margin-top: 4px" /></h3>
+                <a href="#menu" id="btnMenu" style="border: none; background-color: #c5021a; box-shadow: none; margin-top: 11px" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-a ui-btn-inline">Menù</a>
+            </div>
+            <div data-role="panel" data-display="overlay" data-position="right" id="menu">
+                <input type="search" name="buscaRestaurante" id="buscaRestaurante" placeholder="Buscar Lugar">
+                <br>
+                <ul data-role="listview">
+                    <li data-icon="home"><a data-ajax="false" href="index.html">Inicio</a></li>
+                    <li data-icon="check"><a id="iniciar" data-ajax="false" href="iniciarSesion.html">Inicia Sesión</a></li>
+                    <li data-icon="user"><a  id="perfil" data-ajax="false" href="perfil.html">Tu Perfil</a></li>
+                    <li data-icon="info"><a id="estados" href="estado.html" data-ajax="false">Estado de Tus Domicilios</a></li>
+                    <li data-icon="bullets"><a href="servicios.html" data-ajax="false">Otros Servicios</a></li>
+                    <li data-icon="star"><a href="#" data-ajax="false" onclick="alert('Esta función estará disponible proximamente')">Favoritos</a></li>
+                    <li data-icon="location"><a data-ajax="false" href="verCercanos.html">Lugares Cercanos</a></li>
+                    <li data-icon="shop"><a data-ajax="false" href="tipoRestaurantes.html">Restaurantes</a></li>
+                    <li data-icon="power"><a data-ajax="false" id="cerrar" href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+                </ul>
+            </div><!-- /panel -->
+            <div role="main" class="ui-content">                
+                <div class="ui-body ui-body-a ui-corner-all">
+                    <form onsubmit="return false;" id="formulario">
+                        <label for="nombres">Nombres:</label>
+                        <input type="text" name="nombres" id="nombres" value="" required>
+                        <label for="apellidos">Apellidos:</label>
+                        <input type="text" name="apellidos" id="apellidos" value="" required>
+                        <label for="fNacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" name="fNacimiento" id="fNacimiento" value="" required>
+                        <label for="email">Correo:</label>
+                        <input type="email" name="email" id="email" value="" required>
+                        <label for="clave1">Contraseña:</label>
+                        <input type="password" name="clave1" id="clave1" value="" required>
+                        <label for="clave2">Confirmar contraseña:</label>
+                        <input type="password" name="clave2" id="clave2" value="" required>
+                        <input type="button" value="Registrarse" data-theme="a" onclick="registrar()" >
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+</html>

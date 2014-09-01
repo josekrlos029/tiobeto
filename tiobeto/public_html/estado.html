@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/restaurantes.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.2.min.js"></script>
+        <script src="js/jquery.liveSearch.js"></script>
+        <script src="js/app.js"></script>
+        <script src="phonegap.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>   
+
+        <script>
+            var fe, ho;
+            document.addEventListener("deviceready", onDeviceReady, false);
+            document.addEventListener("menubutton", onMenuKeyDown, false);
+
+            function onMenuKeyDown() {
+                $("#btnMenu").click();
+            }
+
+            function onDeviceReady() {
+                if(localStorage.getItem("idUsuario")!= null && localStorage.getItem("idUsuario")!= ""){
+                    consultarPedidos();
+                }else{
+                    $("#cargar").html('<h3>Para ver el estado de tus pedidos debes iniciar sesión</h3><br><a style="background-color: #84aa1f; color: white; text-decoration: none;text-shadow: none" href="iniciarSesion.html" data-ajax="false" class="ui-btn ui-shadow ui-corner-all ui-icon-check ui-btn-icon-right">Iniciar Sesión</a>');
+                }
+                
+            }
+
+            function consultarPedidos() {
+                var $this = $(this),
+                        theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+                        msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+                        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+                        textonly = !!$this.jqmData("textonly");
+                html = $this.jqmData("html") || "";
+                $.mobile.loading("show", {
+                    text: msgText,
+                    textVisible: textVisible,
+                    theme: theme,
+                    textonly: textonly,
+                    html: html
+                });
+                var idUsuario = localStorage.getItem("idUsuario");
+                //var url = "http://192.168.1.33/domicilios/restaurante/consultarPedidos";
+                var url = "http://tudomicilio.liceogalois.com/restaurante/consultarPedidos";
+                //var url = "/domicilios/restaurante/consultarPedidos";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        idUsuario: idUsuario
+                    }
+                })
+                        .done(function(msg) {
+
+                            $("#cargar").html(msg);
+                            $('#domicilios').listview();
+                            $('#domicilios').listview('refresh');
+                            $.mobile.loading("hide");
+                        });
+
+            }
+        </script>
+    </head>
+    <body>
+        <div data-role="page" id="pagina">
+
+            <div data-role="header" data-position="fixed" data-fullscreen="false">
+                <a href="#" style="border: none; background-color: #c5021a;  box-shadow: none; margin-top: 11px" onclick="atras()" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-carat-l ui-btn-icon-notext ui-btn-a ui-btn-inline">Atras</a>
+                <h3><img  src="image/header.png" style="width: 130px;margin-top: 4px" /></h3>
+                <a href="#menu" id="btnMenu" style="border: none; background-color: #c5021a; box-shadow: none; margin-top: 11px" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-a ui-btn-inline">Menù</a>
+            </div>
+            <div data-role="panel" data-display="overlay" id="menu" data-position="right">
+                <input type="search" name="buscaRestaurante" id="buscaRestaurante" placeholder="Buscar Lugar">
+                <div id="newSearch" style="width: 100%; z-index: 1000"></div> 
+                <br>
+                <ul data-role="listview" style="z-index: 0">
+                    <li data-icon="home"><a data-ajax="false" href="index.html">Inicio</a></li>
+                    <li data-icon="check"><a id="iniciar" data-ajax="false" href="iniciarSesion.html">Inicia Sesión</a></li>
+                    <li data-icon="user"><a  id="perfil" data-ajax="false" href="perfil.html">Tu Perfil</a></li>
+                    <li data-icon="info"><a id="estados" href="estado.html" data-ajax="false">Estado de Tus Domicilios</a></li>
+                    <li data-icon="bullets"><a href="servicios.html" data-ajax="false">Otros Servicios</a></li>
+                    <li data-icon="star"><a href="#" data-ajax="false" onclick="alert('Esta función estará disponible proximamente')">Favoritos</a></li>
+                    <li data-icon="location"><a data-ajax="false" href="verCercanos.html">Lugares Cercanos</a></li>
+                    <li data-icon="shop"><a data-ajax="false" href="tipoRestaurantes.html">Restaurantes</a></li>
+                    <li data-icon="power"><a data-ajax="false" id="cerrar" href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+                </ul>
+            </div><!-- /panel -->
+            <div role="main" class="ui-content">                
+                <div id="cargar"></div>
+                <div data-role="popup" id="popupEstado" data-dismissible="false" data-overlay-theme="b" data-theme="b" class="ui-corner-all">
+
+                    <div style="padding:10px 20px;">
+                        <a href="#" data-rel="back" id="close" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                        <h3 style="text-align: center">Cancelar Pedido</h3>
+                        <button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-right ui-icon-check" id="btnEstado" onclick="cancelarPedido()">Confirmar Cancelación</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

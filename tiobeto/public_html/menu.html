@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/restaurantes.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+        <link rel="stylesheet" href="css/responsiveslides.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.2.min.js"></script>
+        <script src="phonegap.js" type="text/javascript"></script>
+        <script src="js/app.js"></script>        
+        <script>
+
+            document.addEventListener("deviceready", onDeviceReady, false);
+            document.addEventListener("menubutton", onMenuKeyDown, false);
+
+            function onMenuKeyDown() {
+                $("#btnMenu").click();
+            }
+
+            function onDeviceReady() {
+                var $this = $(this),
+                        theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+                        msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+                        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+                        textonly = !!$this.jqmData("textonly");
+                html = $this.jqmData("html") || "";
+                $.mobile.loading("show", {
+                    text: msgText,
+                    textVisible: textVisible,
+                    theme: theme,
+                    textonly: textonly,
+                    html: html
+                });
+
+                $("#btnEliminar").hide();
+                cargarLista();
+
+            }
+
+            function cargarLista() {
+
+                var idRestaurante = localStorage.getItem("idRestaurante");
+                //var url = "http://192.168.1.33/domicilios/restaurante/consultarRestaurante";
+                var url = "http://tudomicilio.liceogalois.com/restaurante/consultarRestaurante";
+                //var url = "/domicilios/restaurante/consultarRestaurante";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        idRestaurante: idRestaurante
+                    }
+                })
+                        .done(function(msg) {
+
+                            var json = eval("(" + msg + ")");
+                            if (json.estado == "a") {
+                                $("#rest").text(json.nombre);
+                            } else if (json.estado == "c") {
+                                $("#rest").html(json.nombre + " <span style='font-size: 9px'> (cerrado) </span>");
+                            }
+                            $("#estado").val(json.estado);
+                            $("#descripcion").text(json.descripcion);
+                            $("#telefono").append(json.telefono);
+                            $("#direccion").append(json.direccion);
+
+                            menu();
+                            $.mobile.loading("hide");
+                        });
+
+            }
+            function menu() {
+                var idRestaurante = localStorage.getItem("idRestaurante");
+                var url = "http://tudomicilio.liceogalois.com/restaurante/menu";
+                //var url = "http://192.168.1.33/domicilios/restaurante/menu";
+                //var url = "/domicilios/restaurante/menu";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        idRestaurante: idRestaurante
+                    }
+                })
+                        .done(function(msg) {
+                            $("#two").html(msg);
+                            setTimeout(function() {
+                                $('#lista').trigger('create');
+                                $(".l1").trigger('create');
+                                $(".l2").trigger('create');
+
+                            }, 1000);
+                        });
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <div data-role="page" id="pagina">
+            <div data-role="header" data-position="fixed" data-fullscreen="false">
+                <a href="#" style="border: none; background-color: #c5021a;  box-shadow: none; margin-top: 11px" onclick="atras()" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-carat-l ui-btn-icon-notext ui-btn-a ui-btn-inline">Atras</a>
+                <h3><img  src="image/header.png" style="width: 130px;margin-top: 4px" /></h3>
+                <a href="#menu" id="btnMenu" style="border: none; background-color: #c5021a; box-shadow: none; margin-top: 11px" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-a ui-btn-inline">Menù</a>
+            </div>
+            <div data-role="panel" data-display="overlay" data-position="right" id="menu">
+                <input type="search" name="buscaRestaurante" id="buscaRestaurante" placeholder="Buscar Lugar">
+                <br>
+                <ul data-role="listview">
+                    <li data-icon="home"><a data-ajax="false" href="index.html">Inicio</a></li>
+                    <li data-icon="check"><a id="iniciar" data-ajax="false" href="iniciarSesion.html">Inicia Sesión</a></li>
+                    <li data-icon="user"><a  id="perfil" data-ajax="false" href="perfil.html">Tu Perfil</a></li>
+                    <li data-icon="info"><a id="estados" href="estado.html" data-ajax="false">Estado de Tus Domicilios</a></li>
+                    <li data-icon="bullets"><a href="servicios.html" data-ajax="false">Otros Servicios</a></li>
+                    <li data-icon="star"><a href="#" data-ajax="false" onclick="alert('Esta función estará disponible proximamente')">Favoritos</a></li>
+                    <li data-icon="location"><a data-ajax="false" href="verCercanos.html">Lugares Cercanos</a></li>
+                    <li data-icon="shop"><a data-ajax="false" href="tipoRestaurantes.html">Restaurantes</a></li>
+                    <li data-icon="power"><a data-ajax="false" id="cerrar" href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+                </ul>
+            </div><!-- /panel -->
+
+            <div role="main" class="ui-content">
+                <input id="estado" type="hidden" />
+                <div id="one">
+
+                    <div class="ui-body ui-body-a ui-corner-all">
+                        <h4 class="centrado" id="rest" style="margin-top: 5px; margin-bottom: 5px;">Descripción</h4>
+                        <p class="centrado" id="descripcion" style="margin-top: 5px; margin-bottom: 5px;font-size: 12px"></p>
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a"><div id="telefono" class="ui-nodisc-icon ui-alt-icon" style="font-size: 11px"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-phone ui-btn-icon-notext ui-btn-inline">Delete</a></div></div>
+                            <div class="ui-block-b" style="margin-left: -10%;width: 60%;"><div id="direccion" class="ui-nodisc-icon ui-alt-icon" style="font-size: 11px"><a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-location ui-btn-icon-notext ui-btn-inline">Delete</a></div></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="two">
+
+                </div>
+
+            </div>
+            <div data-role="popup" id="popup" data-dismissible="false" data-overlay-theme="b" data-theme="b" class="ui-corner-all">
+
+                <div style="padding:10px 20px;">
+                    <a href="#" data-rel="back" id="close" onclick="reset();" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                    <h3 id="titu" style="text-align: center"></h3>                        
+                    <p style="text-align: center" id="desc"></p>
+                    <p style="text-align: center; font-weight: bold" id="prec"></p>
+                    <div class="ui-field-contain">
+                        <label for="canti">Cantidad:</label>
+                        <input type="number" data-clear-btn="true" id="canti" name="canti" data-theme="a" value="">
+                    </div>
+                    <div class="ui-field-contain">
+                        <label for="indicaciones">Indicaciones:</label>
+                        <input type="text" data-clear-btn="true" id="indicaciones" placeholder="Ej: Sin cebolla" name="canti" data-theme="a" value="">
+                    </div>
+
+                    <input type="hidden" value="" id="idProducto">
+                    <button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-right ui-icon-check" id="btnPop" onclick="añadir()">Añadir</button>
+                    <button class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-right ui-icon-check" id="btnEliminar" onclick="eliminar()">Quitar</button>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
