@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns		= "http://www.w3.org/ns/widgets"
         xmlns:gap	= "http://phonegap.com/ns/1.0"
-        id		= "com.tuDomicilio.tuDomicilio"
-        version 	= "1.4.0">
+        id		= "com.tuDomicilio.tiobeto"
+        version 	= "1.0.0">
 
-    <name>Tu Domicilio Valledupar</name>
+    <name>Las Perras del Tio Beto</name>
 
     <description>
-        Pide tu comida favorita a tu restaurante favorito desde cualquier lugar de la Ciudad.
+        Dejese Sorprender !
     </description>
 
     <author href="https://www.facebook.com/josekrlos029"
