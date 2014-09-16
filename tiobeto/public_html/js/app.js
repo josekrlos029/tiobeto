@@ -3,16 +3,82 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$(document).ready(function() {
-    consultarFooter();
-    consultarMenu();
+function init() {
+    $("#slider").responsiveSlides({
+        maxwidth: 800,
+        speed: 2000
+    });
+    
+    menu();
+    crearDb();
+    
+    var pushNotification = window.plugins.pushNotification;
 
-    jQuery('#buscaRestaurante').liveSearch({url: 'http://tudomicilio.liceogalois.com/restaurante/buscaRestaurante/', id: 'newSearch'});
-});
+    if (device.platform == 'android' || device.platform == 'Android')
+    {
+        //PARA ANDROID
+        pushNotification.register(
+                successHandler,
+                errorHandler, {
+                    "senderID": "616270198580", //ID del proyecto  (Debes crear un proyecto en google developers -> https://console.developers.google.com/project )
+                    "ecb": "onNotificationGCM"  //Metodo cuando llega una notificación
+                });
+    }
+    else
+    {
+        //Para IOS
+        pushNotification.register(
+                tokenHandler,
+                errorHandler, {
+                    "badge": "true",
+                    "sound": "true",
+                    "alert": "true",
+                    "ecb": "onNotificationAPN"
+                });
+    }
+    
+    
+}
+
+function menu() {
+
+    var url = "http://app.lasperrasdeltiobeto.com/restaurante/menu";
+    //var url = "/adminbeto/restaurante/menu";
+    //var url = "/domicilios/restaurante/menu";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {}
+    })
+            .done(function(msg) {
+                $("#carta").html(msg);
+                setTimeout(function() {
+                    $('#lista').trigger('create');
+                    $(".l1").trigger('create');
+                    $(".l2").trigger('create');
+
+                }, 2000);
+            });
+
+}
+
+function crearDb() {
+    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS lista (id unique, nombre, descripcion, precio, cantidad, indicaciones)');
+    });
+    localStorage.setItem("dbExist", "true");
+}
+function eliminarDb() {
+    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    db.transaction(function(tx) {
+        tx.executeSql('DROP TABLE lista');
+    });
+    localStorage.setItem("dbExist", "false");
+}
 
 function consultarMenu() {
     if (localStorage.getItem("idUsuario") != "" && localStorage.getItem("idUsuario") != null) {
-
         //ESta Logeado
         $("#iniciar").hide();
 
@@ -68,7 +134,6 @@ function pop(idProducto, nombre, descripcion, precio, estado) {
         $("#idProducto").val(idProducto);
     }
 
-
 }
 function añadir() {
 
@@ -103,14 +168,13 @@ function añadir() {
         update();
     }
 }
-
 function insert(precio) {
     var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
     var cantidad = $("#canti").val();
     var indicaciones = $("#indicaciones").val();
 
     db.transaction(function(tx) {
-        tx.executeSql('INSERT INTO lista (id, nombre, descripcion, precio, cantidad, idRestaurante, indicaciones) VALUES (?, ?, ?, ?, ?, ?, ?)', [$("#idProducto").val(), $("#titu").text(), $("#desc").text(), precio, cantidad, localStorage.getItem("idRestaurante"), indicaciones]);
+        tx.executeSql('INSERT INTO lista (id, nombre, descripcion, precio, cantidad, indicaciones) VALUES (?, ?, ?, ?, ?, ?)', [$("#idProducto").val(), $("#titu").text(), $("#desc").text(), precio, cantidad, indicaciones]);
         reset();
         localStorage.setItem("rows", "true");
         if (getNameURLWeb() != "carrito.html") {
@@ -120,7 +184,6 @@ function insert(precio) {
     $("#close").click();
 
 }
-
 function update() {
     var cantidad = $("#canti").val();
     var indicaciones = $("#indicaciones").val();
@@ -385,7 +448,7 @@ function onPrompt2(buttonIndex) {
 }
 
 function confirmarServicio(estado) {
-     var $this = $(this),
+    var $this = $(this),
             theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
             msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
             textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
