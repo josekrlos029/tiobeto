@@ -23,13 +23,13 @@ function init() {
         speed: 2000
     });
     
-    menu();
-    crearDb();
+    
     
     var pushNotification = window.plugins.pushNotification;
 
     if (device.platform == 'android' || device.platform == 'Android')
     {
+        
         //PARA ANDROID
         pushNotification.register(
                 successHandler,
@@ -50,7 +50,7 @@ function init() {
                     "ecb": "onNotificationAPN"
                 });
     }
-    
+    menu();
     
 }
 
@@ -74,6 +74,7 @@ function menu() {
                     $(".l2").trigger('create');
                     $.mobile.loading("hide");
                     $("#carta").show();
+                    crearDb();
                 }, 2000);
             });
 }
