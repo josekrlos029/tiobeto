@@ -4,6 +4,20 @@
  * and open the template in the editor.
  */
 function init() {
+    var $this = $(this),
+            theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+            msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+            textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+            textonly = !!$this.jqmData("textonly");
+    html = $this.jqmData("html") || "";
+    $.mobile.loading("show", {
+        text: msgText,
+        textVisible: textVisible,
+        theme: theme,
+        textonly: textonly,
+        html: html
+    });
+    
     $("#slider").responsiveSlides({
         maxwidth: 800,
         speed: 2000
@@ -51,15 +65,17 @@ function menu() {
         data: {}
     })
             .done(function(msg) {
+                $("#carta").hide();
                 $("#carta").html(msg);
+        
                 setTimeout(function() {
                     $('#lista').trigger('create');
                     $(".l1").trigger('create');
                     $(".l2").trigger('create');
-
+                    $.mobile.loading("hide");
+                    $("#carta").show();
                 }, 2000);
             });
-
 }
 
 function crearDb() {
