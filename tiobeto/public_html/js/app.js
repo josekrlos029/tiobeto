@@ -17,7 +17,7 @@ function init() {
         textonly: textonly,
         html: html
     });
-    
+    alert("df");
     $("#slider").responsiveSlides({
         maxwidth: 800,
         speed: 2000
