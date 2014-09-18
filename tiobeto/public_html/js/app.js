@@ -17,7 +17,7 @@ function init() {
         textonly: textonly,
         html: html
     });
-    alert("df");
+    
     $("#slider").responsiveSlides({
         maxwidth: 800,
         speed: 2000
@@ -80,14 +80,14 @@ function menu() {
 }
 
 function crearDb() {
-    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS lista (id unique, nombre, descripcion, precio, cantidad, indicaciones)');
     });
     localStorage.setItem("dbExist", "true");
 }
 function eliminarDb() {
-    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
         tx.executeSql('DROP TABLE lista');
     });
@@ -132,7 +132,7 @@ function pop(idProducto, nombre, descripcion, precio, estado) {
         alert("Lo sentimos, por el momento este producto no está disponible");
         $("#close").click();
     } else {
-        var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+        var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
 
         db.transaction(function(tx) {
             tx.executeSql('SELECT * FROM lista WHERE id=?', [idProducto], function(tx, results) {
@@ -154,7 +154,7 @@ function pop(idProducto, nombre, descripcion, precio, estado) {
 }
 function añadir() {
 
-    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     var precio = $("#prec").text();
 
     precio = precio.replace('$', '');
@@ -186,7 +186,7 @@ function añadir() {
     }
 }
 function insert(precio) {
-    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     var cantidad = $("#canti").val();
     var indicaciones = $("#indicaciones").val();
 
@@ -204,7 +204,7 @@ function insert(precio) {
 function update() {
     var cantidad = $("#canti").val();
     var indicaciones = $("#indicaciones").val();
-    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
         tx.executeSql('UPDATE lista SET cantidad=?, indicaciones=?  WHERE id=?', [cantidad, indicaciones, $("#idProducto").val()]);
         reset();
@@ -219,7 +219,7 @@ function update() {
 }
 
 function eliminar() {
-    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
         tx.executeSql('DELETE FROM lista WHERE id=?', [$("#idProducto").val()]);
         reset();
@@ -235,7 +235,7 @@ function eliminar() {
 
 function eliminarLista() {
 
-    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
         tx.executeSql('DELETE FROM lista');
         localStorage.setItem("rows", "false");
@@ -257,7 +257,7 @@ function getNameURLWeb() {
 }
 
 function comprobarLista() {
-    var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+    var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
         tx.executeSql('SELECT * FROM lista', [], function(tx, results) {
             var len = results.rows.length;

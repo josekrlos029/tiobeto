@@ -18,8 +18,8 @@ and open the template in the editor.
         <script src="js/jquery.mobile-1.4.2.min.js"></script>
         <script src="js/responsiveslides.min.js"></script>
         <script src="phonegap.js" type="text/javascript"></script>
-        <!--<script src="cdv-plugin-fb-connect.js"></script>
-        <script src="facebook-js-sdk.js"></script>-->
+        <script src="cdv-plugin-fb-connect.js"></script>
+        <script src="facebook-js-sdk.js"></script>
         <script src="js/app.js"></script>
         <script>
             
@@ -64,7 +64,7 @@ and open the template in the editor.
                 $("#btnEnvio").attr("disabled","disabled");
                 var arreglo = new Array();
                 var idRestaurante;
-                var db = window.openDatabase("carrito", "1.0", "listacompraDB", 1000000);
+                var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
                 db.transaction(function(tx) {
                     tx.executeSql('SELECT * FROM lista', [], function(tx, results) {
                         var len = results.rows.length;
@@ -112,7 +112,7 @@ and open the template in the editor.
                 });
                 //var url = "/domicilios/restaurante/registrarDomicilio";
                 //var url = "http://192.168.1.33/domicilios/restaurante/registrarDomicilio";
-                var url = "http://tudomicilio.liceogalois.com/restaurante/registrarDomicilio";
+                var url = "http://app.lasperrasdeltiobeto.com/restaurante/registrarDomicilio";
 
                 $.ajax({
                     type: "POST",
@@ -188,7 +188,7 @@ and open the template in the editor.
 //Consulta en la bd del servidor si el usuario Existe... Sino Existe Lo agrega como nuevo usuario de la App
             function confirmarRegistro(persona) {
                 //var url = "http://192.168.1.33/domicilios/restaurante/confirmarRegistroFace";
-                var url = "http://tudomicilio.liceogalois.com/restaurante/confirmarRegistroFace";
+                var url = "http://app.lasperrasdeltiobeto.com/restaurante/confirmarRegistroFace";
 
                 $.ajax({
                     type: "POST",
@@ -216,9 +216,9 @@ and open the template in the editor.
     <body>
         <div data-role="page">
             <div data-role="header" data-position="fixed" data-fullscreen="false">
-                <a href="#" style="border: none; background-color: #c5021a;  box-shadow: none; margin-top: 11px" onclick="atras()" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-carat-l ui-btn-icon-notext ui-btn-a ui-btn-inline">Atras</a>
+                <a href="#" style="border: none; background-color: black;  box-shadow: none; margin-top: 11px" onclick="atras()" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-carat-l ui-btn-icon-notext ui-btn-a ui-btn-inline">Atras</a>
                 <h3><img  src="image/header.png" style="width: 130px;margin-top: 4px" /></h3>
-                <a href="#menu" id="btnMenu" style="border: none; background-color: #c5021a; box-shadow: none; margin-top: 11px" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-a ui-btn-inline">Menù</a>
+                <a href="#menu" id="btnMenu" style="border: none; background-color: black; box-shadow: none; margin-top: 11px" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-a ui-btn-inline">Menù</a>
             </div>
             <div data-role="panel" data-display="overlay" data-position="right" id="menu">
                 <input type="search" name="buscaRestaurante" id="buscaRestaurante" placeholder="Buscar Lugar">
@@ -228,9 +228,6 @@ and open the template in the editor.
                     <li data-icon="check"><a id="iniciar" data-ajax="false" href="iniciarSesion.html">Inicia Sesión</a></li>
                     <li data-icon="user"><a  id="perfil" data-ajax="false" href="perfil.html">Tu Perfil</a></li>
                     <li data-icon="info"><a id="estados" href="estado.html" data-ajax="false">Estado de Tus Domicilios</a></li>
-                    <li data-icon="star"><a href="#" data-ajax="false" onclick="alert('Esta función estará disponible proximamente')">Favoritos</a></li>
-                    <li data-icon="location"><a data-ajax="false" href="verCercanos.html">Lugares Cercanos</a></li>
-                    <li data-icon="shop"><a data-ajax="false" href="tipoRestaurantes.html">Restaurantes</a></li>
                     <li data-icon="power"><a data-ajax="false" id="cerrar" href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
                 </ul>
             </div><!-- /panel -->
