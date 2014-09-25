@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 function init() {
+    
+    consultarMenu();
+    
     var $this = $(this),
             theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
             msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
