@@ -18,6 +18,7 @@ function init() {
         html: html
     });
     
+    crearDb();    
     $("#slider").responsiveSlides({
         maxwidth: 800,
         speed: 2000
@@ -74,7 +75,6 @@ function menu() {
                     $(".l2").trigger('create');
                     $.mobile.loading("hide");
                     $("#carta").show();
-                    crearDb();
                 }, 2000);
             });
 }
@@ -84,7 +84,6 @@ function crearDb() {
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS lista (id unique, nombre, descripcion, precio, cantidad, indicaciones)');
     });
-    localStorage.setItem("dbExist", "true");
 }
 function eliminarDb() {
     var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
