@@ -24,7 +24,7 @@ function init() {
     crearDb();    
     $("#slider").responsiveSlides({
         maxwidth: 800,
-        speed: 2000
+        speed: 3000
     });
     
     
@@ -54,8 +54,26 @@ function init() {
                     "ecb": "onNotificationAPN"
                 });
     }
-    menu();
-    
+    banner();
+   
+}
+
+function banner(){
+    var url = "http://app.lasperrasdeltiobeto.com/restaurante/banner";
+    //var url = "/adminbeto/restaurante/menu";
+    //var url = "/domicilios/restaurante/menu";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {}
+    })
+            .done(function(msg) {
+                var json = eval("(" + msg + ")");
+                for(var i =0; i<json.total; i++){
+                    $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/'+i+'.png" alt=""></li>');
+                }
+                menu();
+            });
 }
 
 function menu() {
@@ -178,7 +196,6 @@ function añadir() {
                             alert("Ya tienes un productos de otro restaurante en el carrito de compras, puedes borrar el carrito de compras actual o hacer el pedido y continuar con otro restaurante ! ");
                         }
                     }
-
                 }, null);
             });
 
