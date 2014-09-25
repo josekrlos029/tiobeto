@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 function init() {
-    
+
     consultarMenu();
-    
+
     var $this = $(this),
             theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
             msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
@@ -20,20 +20,14 @@ function init() {
         textonly: textonly,
         html: html
     });
-    
-    crearDb();    
-    $("#slider").responsiveSlides({
-        maxwidth: 800,
-        speed: 3000
-    });
-    
-    
-    
+
+    crearDb();
+
     var pushNotification = window.plugins.pushNotification;
 
     if (device.platform == 'android' || device.platform == 'Android')
     {
-        
+
         //PARA ANDROID
         pushNotification.register(
                 successHandler,
@@ -55,10 +49,10 @@ function init() {
                 });
     }
     banner();
-   
+
 }
 
-function banner(){
+function banner() {
     var url = "http://app.lasperrasdeltiobeto.com/restaurante/banner";
     //var url = "/adminbeto/restaurante/menu";
     //var url = "/domicilios/restaurante/menu";
@@ -69,10 +63,14 @@ function banner(){
     })
             .done(function(msg) {
                 var json = eval("(" + msg + ")");
-                for(var i =0; i<json.total; i++){
+                for (var i = 0; i < json.total; i++) {
                     alert(i);
-                    $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/'+i+'.png" alt=""></li>');
+                    $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/' + i + 1 + '.png" alt=""></li>');
                 }
+                $("#slider").responsiveSlides({
+                    maxwidth: 800,
+                    speed: 3000
+                });
                 menu();
             });
 }
@@ -90,7 +88,7 @@ function menu() {
             .done(function(msg) {
                 $("#carta").hide();
                 $("#carta").html(msg);
-        
+
                 setTimeout(function() {
                     $('#lista').trigger('create');
                     $(".l1").trigger('create');
