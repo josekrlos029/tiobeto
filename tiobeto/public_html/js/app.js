@@ -70,6 +70,7 @@ function banner(){
             .done(function(msg) {
                 var json = eval("(" + msg + ")");
                 for(var i =0; i<json.total; i++){
+                    alert(i);
                     $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/'+i+'.png" alt=""></li>');
                 }
                 menu();
