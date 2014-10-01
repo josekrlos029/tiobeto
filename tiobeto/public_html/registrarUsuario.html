@@ -29,6 +29,7 @@ and open the template in the editor.
 
             function onDeviceReady() {
                 consultarFooter();
+                consultarMenu();
             }
 
         </script>
@@ -42,8 +43,6 @@ and open the template in the editor.
                 <a href="#menu" id="btnMenu" style="border: none; background-color: black; box-shadow: none; margin-top: 11px" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-a ui-btn-inline">Menù</a>
             </div>
             <div data-role="panel" data-display="overlay" data-position="right" id="menu">
-                <input type="search" name="buscaRestaurante" id="buscaRestaurante" placeholder="Buscar Lugar">
-                <br>
                 <ul data-role="listview">
                     <li data-icon="home"><a data-ajax="false" href="index.html">Inicio</a></li>
                     <li data-icon="check"><a id="iniciar" data-ajax="false" href="iniciarSesion.html">Inicia Sesión</a></li>
