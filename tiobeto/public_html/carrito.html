@@ -40,6 +40,7 @@ and open the template in the editor.
                     textonly: textonly,
                     html: html
                 });
+                consultarFooter();
                 var cant = 0;
                 var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
                 db.transaction(function(tx) {
@@ -164,7 +165,6 @@ and open the template in the editor.
                     <li data-icon="home"><a data-ajax="false" href="index.html">Inicio</a></li>
                     <li data-icon="check"><a id="iniciar" data-ajax="false" href="iniciarSesion.html">Inicia Sesión</a></li>
                     <li data-icon="user"><a  id="perfil" data-ajax="false" href="perfil.html">Tu Perfil</a></li>
-                    <li data-icon="info"><a id="estados" href="estado.html" data-ajax="false">Estado de Tus Domicilios</a></li>
                     <li data-icon="power"><a data-ajax="false" id="cerrar" href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
                 </ul>
             </div><!-- /panel -->

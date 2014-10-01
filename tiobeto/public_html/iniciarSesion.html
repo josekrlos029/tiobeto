@@ -33,7 +33,7 @@ and open the template in the editor.
             function onDeviceReady() {
 
                 FB.init({appId: "1567917880103520", nativeInterface: CDV.FB, useCachedDialogs: false});
-
+                consultarFooter();
 
             }
 
@@ -146,11 +146,6 @@ and open the template in the editor.
                     <li data-icon="home"><a data-ajax="false" href="index.html">Inicio</a></li>
                     <li data-icon="check"><a id="iniciar" data-ajax="false" href="iniciarSesion.html">Inicia Sesión</a></li>
                     <li data-icon="user"><a  id="perfil" data-ajax="false" href="perfil.html">Tu Perfil</a></li>
-                    <li data-icon="info"><a id="estados" href="estado.html" data-ajax="false">Estado de Tus Domicilios</a></li>
-                    <li data-icon="bullets"><a href="servicios.html" data-ajax="false">Otros Servicios</a></li>
-                    <li data-icon="star"><a href="#" data-ajax="false" onclick="alert('Esta función estará disponible proximamente')">Favoritos</a></li>
-                    <li data-icon="location"><a data-ajax="false" href="verCercanos.html">Lugares Cercanos</a></li>
-                    <li data-icon="shop"><a data-ajax="false" href="tipoRestaurantes.html">Restaurantes</a></li>
                     <li data-icon="power"><a data-ajax="false" id="cerrar" href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
                 </ul>
             </div><!-- /panel -->

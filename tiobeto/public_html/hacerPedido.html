@@ -32,6 +32,7 @@ and open the template in the editor.
 
             function onDeviceReady() {
                 $("#btnPopup").hide();
+                consultarFooter();
                 FB.init({appId: "1567917880103520", nativeInterface: CDV.FB, useCachedDialogs: false});
             }
             function getLoginStatus() {
@@ -69,9 +70,10 @@ and open the template in the editor.
                     tx.executeSql('SELECT * FROM listaBeto', [], function(tx, results) {
                         var len = results.rows.length;
                         if (len == 0) {
+                            alert("Por favor selecciona la comida que vas a pedir !");
                             location.href = "index.html";
                         } else {
-
+                            
                             idRestaurante = results.rows.item(0).idRestaurante;
                             for (var i = 0; i < len; i++) {
 
@@ -93,7 +95,7 @@ and open the template in the editor.
             }
 
             function guardar(data) {
-
+                $("#btnEnvio").attr("disabled","disabled");
                 var $this = $(this),
                         theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
                         msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
@@ -184,6 +186,7 @@ and open the template in the editor.
 
 //Consulta en la bd del servidor si el usuario Existe... Sino Existe Lo agrega como nuevo usuario de la App
             function confirmarRegistro(persona) {
+                
                 var $this = $(this),
                         theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
                         msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
