@@ -6,6 +6,7 @@
 function init() {
 
     consultarMenu();
+    consultarFooter();
 
     var $this = $(this),
             theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
@@ -191,11 +192,7 @@ function añadir() {
                     if (len == 0) {
                         insert(precio);
                     } else {
-                        if (results.rows.item(0).idRestaurante == localStorage.getItem("idRestaurante")) {
-                            insert(precio);
-                        } else {
-                            alert("Ya tienes un productos de otro restaurante en el carrito de compras, puedes borrar el carrito de compras actual o hacer el pedido y continuar con otro restaurante ! ");
-                        }
+                        
                     }
                 }, null);
             });
