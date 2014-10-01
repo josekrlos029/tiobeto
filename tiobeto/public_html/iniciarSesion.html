@@ -38,10 +38,10 @@ and open the template in the editor.
             }
 
             function facebook() {
-                
+
                 if (localStorage.getItem("idUsuario") != "" && localStorage.getItem("idUsuario") != null) {
                     alert("Has iniciado sesión Correctamente");
-                    location.href="index.html";
+                    location.href = "index.html";
                 } else {
                     FB.login(
                             function(response) {
@@ -87,6 +87,19 @@ and open the template in the editor.
 
 //Consulta en la bd del servidor si el usuario Existe... Sino Existe Lo agrega como nuevo usuario de la App
             function confirmarRegistro(persona) {
+                var $this = $(this),
+                        theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+                        msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+                        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+                        textonly = !!$this.jqmData("textonly");
+                html = $this.jqmData("html") || "";
+                $.mobile.loading("show", {
+                    text: msgText,
+                    textVisible: textVisible,
+                    theme: theme,
+                    textonly: textonly,
+                    html: html
+                });
                 //var url = "http://192.168.1.33/domicilios/restaurante/confirmarRegistroFace";
                 var url = "http://app.lasperrasdeltiobeto.com/restaurante/confirmarRegistroFace";
 
@@ -102,14 +115,15 @@ and open the template in the editor.
                                 localStorage.setItem('idFace', persona.idFace);
                                 localStorage.setItem('idUsuario', json.id);
                                 alert("Has iniciado Sesión correctamente");
-                                location.href="index.html";
+                                location.href = "index.html";
                             } else if (json.msj === "registrado") {
                                 alert("Ya estas Registrado, gracias por confiar en nosotros !");
                                 localStorage.setItem('login', "true");
                                 localStorage.setItem('idFace', persona.idFace);
                                 localStorage.setItem('idUsuario', json.id);
-                                location.href="index.html";
+                                location.href = "index.html";
                             }
+                            $.mobile.loading("hide");
                         });
             }
 
@@ -120,9 +134,9 @@ and open the template in the editor.
         <div data-role="page" id="pagina">
 
             <div data-role="header" data-position="fixed" data-fullscreen="false">
-                <a href="#" style="border: none; background-color: #c5021a;  box-shadow: none; margin-top: 11px" onclick="atras()" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-carat-l ui-btn-icon-notext ui-btn-a ui-btn-inline">Atras</a>
+                <a href="#" style="border: none; background-color: black;  box-shadow: none; margin-top: 11px" onclick="atras()" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-carat-l ui-btn-icon-notext ui-btn-a ui-btn-inline">Atras</a>
                 <h3><img  src="image/header.png" style="width: 130px;margin-top: 4px" /></h3>
-                <a href="#menu" id="btnMenu" style="border: none; background-color: #c5021a; box-shadow: none; margin-top: 11px" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-a ui-btn-inline">Menù</a>
+                <a href="#menu" id="btnMenu" style="border: none; background-color: black; box-shadow: none; margin-top: 11px" class="ui-nodisc-icon ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-a ui-btn-inline">Menù</a>
             </div>
             <div data-role="panel" data-display="overlay" data-position="left" id="menu">
                 <input type="search" name="buscaRestaurante" id="buscaRestaurante" placeholder="Buscar Lugar">

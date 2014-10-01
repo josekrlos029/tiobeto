@@ -325,7 +325,7 @@ function login() {
         };
     }
 
-    var url = "http://tudomicilio.liceogalois.com/restaurante/login";
+    var url = "http://app.lasperrasdeltiobeto.com/restaurante/login";
     //var url = "http://192.168.1.33/domicilios/restaurante/login";
     $.ajax({
         type: "POST",
@@ -377,7 +377,6 @@ function registrar() {
             var data = {
                 nombres: $("#nombres").val(),
                 apellidos: $("#apellidos").val(),
-                fNacimiento: $("#fNacimiento").val(),
                 email: $("#email").val(),
                 clave: $("#clave1").val(),
                 regId: regId
@@ -387,14 +386,13 @@ function registrar() {
             var data = {
                 nombres: $("#nombres").val(),
                 apellidos: $("#apellidos").val(),
-                fNacimiento: $("#fNacimiento").val(),
                 email: $("#email").val(),
                 clave: $("#clave1").val(),
                 token: localStorage.getItem("token")
             };
         }
 
-        var url = "http://tudomicilio.liceogalois.com/restaurante/registrarUsuario";
+        var url = "http://app.lasperrasdeltiobeto.com/restaurante/registrarUsuario";
         //var url = "http://192.168.1.33/domicilios/restaurante/registrarUsuario";
         $.ajax({
             type: "POST",
@@ -484,7 +482,7 @@ function confirmarServicio(estado) {
     });
     //var url = "/domicilios/restaurante/registrarDomicilio";
     //var url = "http://192.168.1.33/domicilios/restaurante/confirmarDomicilio";
-    var url = "http://tudomicilio.liceogalois.com/restaurante/confirmarServicio";
+    var url = "http://app.lasperrasdeltiobeto.com/restaurante/confirmarServicio";
     var data = {idServicio: localStorage.getItem("idServicio"),
         estado: estado};
     $.ajax({
@@ -527,7 +525,7 @@ function confirmarDomicilio(estado) {
     });
     //var url = "/domicilios/restaurante/registrarDomicilio";
     //var url = "http://192.168.1.33/domicilios/restaurante/confirmarDomicilio";
-    var url = "http://tudomicilio.liceogalois.com/restaurante/confirmarDomicilio";
+    var url = "http://app.lasperrasdeltiobeto.com/restaurante/confirmarDomicilio";
     var data = {idDomicilio: localStorage.getItem("idDomicilio"),
         estado: estado};
     $.ajax({

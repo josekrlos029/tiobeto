@@ -22,7 +22,7 @@ and open the template in the editor.
         <script src="facebook-js-sdk.js"></script>
         <script src="js/app.js"></script>
         <script>
-            
+
             document.addEventListener("deviceready", onDeviceReady, false);
             document.addEventListener("menubutton", onMenuKeyDown, false);
 
@@ -33,7 +33,7 @@ and open the template in the editor.
             function onDeviceReady() {
                 $("#btnPopup").hide();
                 FB.init({appId: "1567917880103520", nativeInterface: CDV.FB, useCachedDialogs: false});
-            }    
+            }
             function getLoginStatus() {
                 FB.getLoginStatus(function(response) {
                     if (response.status == 'connected') {
@@ -45,10 +45,10 @@ and open the template in the editor.
                     }
                 });
             }
-            
+
             function envio() {
 
-                 var $this = $(this),
+                var $this = $(this),
                         theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
                         msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
                         textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
@@ -61,7 +61,7 @@ and open the template in the editor.
                     textonly: textonly,
                     html: html
                 });
-                $("#btnEnvio").attr("disabled","disabled");
+                $("#btnEnvio").attr("disabled", "disabled");
                 var arreglo = new Array();
                 var idRestaurante;
                 var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
@@ -96,7 +96,7 @@ and open the template in the editor.
             }
 
             function guardar(data) {
-                
+
                 var $this = $(this),
                         theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
                         msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
@@ -126,16 +126,16 @@ and open the template in the editor.
                                 alert("Tu pedido Llegará en cualquier momento ! ");
                                 eliminarLista();
 
-                            }else if (json.msj == "cerrado") {
+                            } else if (json.msj == "cerrado") {
                                 alert("TuDomicilio está cerrado consulta los horarios de operación !");
-                                
+
                             } else {
                                 alert("Error");
                             }
                             $("#btnEnvio").removeAttr("disabled");
                             $.mobile.loading("hide");
                         });
-                
+
             }
 
             function facebook() {
@@ -171,7 +171,7 @@ and open the template in the editor.
                             fechaNacimiento: response.birthday,
                             regId: regId
                         };
-                    }else{
+                    } else {
                         var persona = {idFace: response.id,
                             nombres: response.first_name,
                             apellidos: response.last_name,
@@ -187,6 +187,19 @@ and open the template in the editor.
 
 //Consulta en la bd del servidor si el usuario Existe... Sino Existe Lo agrega como nuevo usuario de la App
             function confirmarRegistro(persona) {
+                var $this = $(this),
+                        theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+                        msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+                        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+                        textonly = !!$this.jqmData("textonly");
+                html = $this.jqmData("html") || "";
+                $.mobile.loading("show", {
+                    text: msgText,
+                    textVisible: textVisible,
+                    theme: theme,
+                    textonly: textonly,
+                    html: html
+                });
                 //var url = "http://192.168.1.33/domicilios/restaurante/confirmarRegistroFace";
                 var url = "http://app.lasperrasdeltiobeto.com/restaurante/confirmarRegistroFace";
 
@@ -209,6 +222,7 @@ and open the template in the editor.
                                 localStorage.setItem('idUsuario', json.id);
                                 envio();
                             }
+                            $.mobile.loading("hide");
                         });
             }
         </script>
