@@ -43,7 +43,7 @@ and open the template in the editor.
                 var cant = 0;
                 var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
                 db.transaction(function(tx) {
-                    tx.executeSql('SELECT * FROM lista', [], function(tx, results) {
+                    tx.executeSql('SELECT * FROM listaBeto', [], function(tx, results) {
                         var len = results.rows.length;
                         if (len == 0) {
                             $("#titulo").text("Carrito de Compras Vacio");
@@ -73,7 +73,7 @@ and open the template in the editor.
                 var cant = 0;
                 var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
                 db.transaction(function(tx) {
-                    tx.executeSql('SELECT * FROM lista', [], function(tx, results) {
+                    tx.executeSql('SELECT * FROM listaBeto', [], function(tx, results) {
                         var len = results.rows.length;
                         if (len == 0) {
                             $("#titulo").text("Carrito de Compras Vacio");
@@ -100,7 +100,7 @@ and open the template in the editor.
             function consultarCosto() {
                 var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
                 db.transaction(function(tx) {
-                    tx.executeSql('SELECT SUM(precio*cantidad) as total FROM lista', [], function(tx, results) {
+                    tx.executeSql('SELECT SUM(precio*cantidad) as total FROM listaBeto', [], function(tx, results) {
                         var len = results.rows.length;
                         if (len == 0) {
                             $("#titulo").text("Carrito de Compras Vacio");
@@ -116,7 +116,7 @@ and open the template in the editor.
             function consultarCosto2() {
                 var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
                 db.transaction(function(tx) {
-                    tx.executeSql('SELECT SUM(precio*cantidad) as total FROM lista', [], function(tx, results) {
+                    tx.executeSql('SELECT SUM(precio*cantidad) as total FROM listaBeto', [], function(tx, results) {
                         var len = results.rows.length;
                         if (len == 0) {
                             $("#titulo").text("Carrito de Compras Vacio");

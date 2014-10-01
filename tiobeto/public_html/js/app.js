@@ -104,13 +104,13 @@ function menu() {
 function crearDb() {
     var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS lista (id unique, nombre, descripcion, precio, cantidad, indicaciones)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS listaBeto (id unique, nombre, descripcion, precio, cantidad, indicaciones)');
     });
 }
 function eliminarDb() {
     var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
-        tx.executeSql('DROP TABLE lista');
+        tx.executeSql('DROP TABLE listaBeto');
     });
     localStorage.setItem("dbExist", "false");
 }
@@ -156,7 +156,7 @@ function pop(idProducto, nombre, descripcion, precio, estado) {
         var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
 
         db.transaction(function(tx) {
-            tx.executeSql('SELECT * FROM lista WHERE id=?', [idProducto], function(tx, results) {
+            tx.executeSql('SELECT * FROM listaBeto WHERE id=?', [idProducto], function(tx, results) {
                 var len = results.rows.length;
                 if (len != 0) {
                     $("#canti").val(parseInt(results.rows.item(0).cantidad));
@@ -186,7 +186,7 @@ function añadir() {
         } else {
 
             db.transaction(function(tx) {
-                tx.executeSql('SELECT * FROM lista', [], function(tx, results) {
+                tx.executeSql('SELECT * FROM listaBeto', [], function(tx, results) {
                     var len = results.rows.length;
                     if (len == 0) {
                         insert(precio);
@@ -211,7 +211,7 @@ function insert(precio) {
     var indicaciones = $("#indicaciones").val();
 
     db.transaction(function(tx) {
-        tx.executeSql('INSERT INTO lista (id, nombre, descripcion, precio, cantidad, indicaciones) VALUES (?, ?, ?, ?, ?, ?)', [$("#idProducto").val(), $("#titu").text(), $("#desc").text(), precio, cantidad, indicaciones]);
+        tx.executeSql('INSERT INTO listaBeto (id, nombre, descripcion, precio, cantidad, indicaciones) VALUES (?, ?, ?, ?, ?, ?)', [$("#idProducto").val(), $("#titu").text(), $("#desc").text(), precio, cantidad, indicaciones]);
         reset();
         localStorage.setItem("rows", "true");
         if (getNameURLWeb() != "carrito.html") {
@@ -226,7 +226,7 @@ function update() {
     var indicaciones = $("#indicaciones").val();
     var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
-        tx.executeSql('UPDATE lista SET cantidad=?, indicaciones=?  WHERE id=?', [cantidad, indicaciones, $("#idProducto").val()]);
+        tx.executeSql('UPDATE listaBeto SET cantidad=?, indicaciones=?  WHERE id=?', [cantidad, indicaciones, $("#idProducto").val()]);
         reset();
         comprobarLista();
         if (getNameURLWeb() == "carrito.html") {
@@ -241,7 +241,7 @@ function update() {
 function eliminar() {
     var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
-        tx.executeSql('DELETE FROM lista WHERE id=?', [$("#idProducto").val()]);
+        tx.executeSql('DELETE FROM listaBeto WHERE id=?', [$("#idProducto").val()]);
         reset();
         comprobarLista();
         if (getNameURLWeb() == "carrito.html") {
@@ -257,7 +257,7 @@ function eliminarLista() {
 
     var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
-        tx.executeSql('DELETE FROM lista');
+        tx.executeSql('DELETE FROM listaBeto');
         localStorage.setItem("rows", "false");
         location.href = "index.html";
     });
@@ -279,7 +279,7 @@ function getNameURLWeb() {
 function comprobarLista() {
     var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
     db.transaction(function(tx) {
-        tx.executeSql('SELECT * FROM lista', [], function(tx, results) {
+        tx.executeSql('SELECT * FROM listaBeto', [], function(tx, results) {
             var len = results.rows.length;
             if (len == 0) {
                 localStorage.setItem("rows", "false");
