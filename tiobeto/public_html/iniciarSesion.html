@@ -61,7 +61,7 @@ and open the template in the editor.
             }
             function getUserInfo() {
                 FB.api('/me', function(response) {
-
+                    alert(localStorage.getItem('regId'));
                     var regId = localStorage.getItem('regId');
                     if (regId != "" && regId != null) {
                         var persona = {idFace: response.id,
@@ -110,6 +110,7 @@ and open the template in the editor.
                 })
                         .done(function(msg) {
                             var json = eval("(" + msg + ")");
+                            alert(msg);
                             if (json.msj === "autenticado") {
                                 localStorage.setItem('login', "true");
                                 localStorage.setItem('idFace', persona.idFace);
