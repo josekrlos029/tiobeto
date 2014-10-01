@@ -110,7 +110,7 @@ and open the template in the editor.
                 })
                         .done(function(msg) {
                             var json = eval("(" + msg + ")");
-                            alert(msg);
+                            
                             if (json.msj === "autenticado") {
                                 localStorage.setItem('login', "true");
                                 localStorage.setItem('idFace', persona.idFace);

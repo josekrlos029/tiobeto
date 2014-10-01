@@ -117,7 +117,7 @@ and open the template in the editor.
                     data: data
                 })
                         .done(function(msg) {
-
+                            alert(msg);
                             var json = eval("(" + msg + ")");
                             if (json.msj == "exito") {
                                 alert("Tu pedido Llegará en cualquier momento ! ");
@@ -213,7 +213,7 @@ and open the template in the editor.
                                 localStorage.setItem('idUsuario', json.id);
                                 envio();
                             } else if (json.msj === "registrado") {
-                                alert("Registro Exitoso");
+                                alert("Ya estas Registrado, puedes realizar tus pedidos !");
                                 localStorage.setItem('login', "true");
                                 localStorage.setItem('idFace', persona.idFace);
                                 localStorage.setItem('idUsuario', json.id);
