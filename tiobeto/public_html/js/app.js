@@ -185,18 +185,7 @@ function añadir() {
         if ($("#canti").val() == "" || $("#canti").val() == null || $("#canti").val() == " ") {
             alert("Por Favor digite una cantidad Valida");
         } else {
-
-            db.transaction(function(tx) {
-                tx.executeSql('SELECT * FROM listaBeto', [], function(tx, results) {
-                    var len = results.rows.length;
-                    if (len == 0) {
-                        insert(precio);
-                    } else {
-                        
-                    }
-                }, null);
-            });
-
+            insert(precio);
         }
     } else {
         update();
