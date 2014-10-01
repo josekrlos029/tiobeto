@@ -32,7 +32,7 @@ function init() {
         pushNotification.register(
                 successHandler,
                 errorHandler, {
-                    "senderID": "616270198580", //ID del proyecto  (Debes crear un proyecto en google developers -> https://console.developers.google.com/project )
+                    "senderID": "179412916581", //ID del proyecto  (Debes crear un proyecto en google developers -> https://console.developers.google.com/project )
                     "ecb": "onNotificationGCM"  //Metodo cuando llega una notificación
                 });
     }
@@ -69,7 +69,6 @@ function banner() {
                     $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/' + j + '.png" alt=""></li>');
                 }
                 $("#slider").show();
-                alert($("#slider").html());
                 $("#slider").responsiveSlides({
                     maxwidth: 800,
                     speed: 3000
@@ -297,8 +296,6 @@ function comprobarLogin() {
     } else {
         $("#btnPopup").click();
     }
-
-
 
 }
 

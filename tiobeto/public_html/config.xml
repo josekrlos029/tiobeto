@@ -70,10 +70,10 @@
     </gap:platforms>
     
     <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
-    <!--<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
-        <param name="APP_ID" value="1428385527442767" />
-        <param name="APP_NAME" value="tudomicilio" />
-    </gap:plugin>-->
+    <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
+        <param name="APP_ID" value="1567917880103520" />
+        <param name="APP_NAME" value="Las Perras del Tio Beto" />
+    </gap:plugin>
     
     <gap:plugin name="org.apache.cordova.dialogs" version="0.2.6" />
     <gap:plugin name="org.apache.cordova.geolocation" version="0.3.7" />
