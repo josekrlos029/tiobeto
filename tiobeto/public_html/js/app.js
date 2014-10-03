@@ -24,6 +24,12 @@ function init() {
 
     crearDb();
 
+    initPush();
+    banner();
+
+}
+
+function initPush(){
     var pushNotification = window.plugins.pushNotification;
 
     if (device.platform == 'android' || device.platform == 'Android')
@@ -49,8 +55,6 @@ function init() {
                     "ecb": "onNotificationAPN"
                 });
     }
-    banner();
-
 }
 
 function banner() {
