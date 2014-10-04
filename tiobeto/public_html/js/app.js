@@ -23,10 +23,8 @@ function init() {
     });
 
     crearDb();
-
-    initPush();
     banner();
-
+    initPush();
 }
 
 function initPush(){
@@ -76,7 +74,7 @@ function banner() {
                 $("#slider").show();
                 $("#slider").responsiveSlides({
                     maxwidth: 800,
-                    speed: 3000
+                    speed: 5000
                 });
                 menu();
             });
