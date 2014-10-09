@@ -69,7 +69,7 @@ function banner() {
                 var json = eval("(" + msg + ")");
                 for (var i = 0; i < json.total; i++) {
                     var j = i+1;
-                    $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/' + j + '.png" alt=""></li>');
+                    $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/' + j + '.jpg" alt=""></li>');
                 }
                 $("#slider").show();
                 $("#slider").responsiveSlides({
@@ -575,7 +575,7 @@ function onNotificationGCM(e) {
                     navigator.notification.vibrate(500);
                     localStorage.setItem("idDomicilio", e.payload.idDomicilio);
                     navigator.notification.confirm(
-                            'Tu Domicilio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL DOMICILIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3017693991 - 5808630)', // message
+                            'Tu Domicilio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL DOMICILIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3014596613 - 3042105446 - 5821168 - 5881899)', // message
                             onPrompt, // callback to invoke
                             'Confirmar', // title
                             ['Confirmar', 'Cancelar'] // buttonLabels
@@ -584,7 +584,7 @@ function onNotificationGCM(e) {
                     navigator.notification.vibrate(500);
                     localStorage.setItem("idServicio", e.payload.idServicio);
                     navigator.notification.confirm(
-                            'Tu Servicio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL SERVICIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3017693991 - 5808630)', // message
+                            'Tu Servicio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL SERVICIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3014596613 - 3042105446 - 5821168 - 5881899)', // message
                             onPrompt2, // callback to invoke
                             'Confirmar', // title
                             ['Confirmar', 'Cancelar'] // buttonLabels
@@ -605,7 +605,7 @@ function onNotificationGCM(e) {
                     if (e.payload.confirmacion) {
                         localStorage.setItem("idDomicilio", e.payload.idDomicilio);
                         navigator.notification.confirm(
-                                'Tu Domicilio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL DOMICILIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3017693991 - 5808630)', // message
+                                'Tu Domicilio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL DOMICILIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3014596613 - 3042105446 - 5821168 - 5881899)', // message
                                 onPrompt, // callback to invoke
                                 'Confirmar', // title
                                 ['Confirmar', 'Cancelar'] // buttonLabels
@@ -614,7 +614,7 @@ function onNotificationGCM(e) {
                         navigator.notification.vibrate(500);
                         localStorage.setItem("idServicio", e.payload.idServicio);
                         navigator.notification.confirm(
-                                'Tu Servicio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL SERVICIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3017693991 - 5808630)', // message
+                                'Tu Servicio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL SERVICIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3014596613 - 3042105446 - 5821168 - 5881899)', // message
                                 onPrompt2, // callback to invoke
                                 'Confirmar', // title
                                 ['Confirmar', 'Cancelar'] // buttonLabels
@@ -629,7 +629,7 @@ function onNotificationGCM(e) {
                     if (e.payload.confirmacion) {
                         localStorage.setItem("idDomicilio", e.payload.idDomicilio);
                         navigator.notification.confirm(
-                                'Tu Domicilio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL DOMICILIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3017693991 - 5808630)', // message
+                                'Tu Domicilio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL DOMICILIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3014596613 - 3042105446 - 5821168 - 5881899)', // message
                                 onPrompt, // callback to invoke
                                 'Confirmar', // title
                                 ['Confirmar', 'Cancelar'] // buttonLabels
@@ -638,7 +638,7 @@ function onNotificationGCM(e) {
                         navigator.notification.vibrate(500);
                         localStorage.setItem("idServicio", e.payload.idServicio);
                         navigator.notification.confirm(
-                                'Tu Servicio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL SERVICIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3017693991 - 5808630)', // message
+                                'Tu Servicio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL SERVICIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3014596613 - 3042105446 - 5821168 - 5881899)', // message
                                 onPrompt2, // callback to invoke
                                 'Confirmar', // title
                                 ['Confirmar', 'Cancelar'] // buttonLabels
@@ -668,7 +668,7 @@ function onNotificationAPN(event) {
         navigator.notification.vibrate(500);
         localStorage.setItem("idDomicilio", event.idDomicilio);
         navigator.notification.confirm(
-                'Tu Domicilio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL DOMICILIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3017693991 - 5808630)', // message
+                'Tu Domicilio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL DOMICILIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3014596613 - 3042105446 - 5821168 - 5881899)', // message
                 onPrompt, // callback to invoke
                 'Confirmar', // title
                 ['Confirmar', 'Cancelar'] // buttonLabels
@@ -677,7 +677,7 @@ function onNotificationAPN(event) {
         navigator.notification.vibrate(500);
         localStorage.setItem("idServicio", event.idServicio);
         navigator.notification.confirm(
-                'Tu Servicio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL SERVICIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3017693991 - 5808630)', // message
+                'Tu Servicio fue aceptado, Necesitamos tu confirmación (UNA VEZ CONFIRMADO EL SERVICIO, NO SE PUEDE CANCELAR, SI SE PRESENTAN PROBLEMAS DURANTE EL SERVICIO LLAMAR 3014596613 - 3042105446 - 5821168 - 5881899)', // message
                 onPrompt2, // callback to invoke
                 'Confirmar', // title
                 ['Confirmar', 'Cancelar'] // buttonLabels
