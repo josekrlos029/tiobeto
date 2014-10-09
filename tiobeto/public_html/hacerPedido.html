@@ -60,7 +60,7 @@ and open the template in the editor.
                 var dir = $("#direccion").val();
                 var te = $("#telefono").val();
                 if (dir == null || dir == "" || te == null || te == "") {
-
+                    alert("Tienes Obligatorios Campos Vácios (*)");
                 } else {
                     var $this = $(this),
                             theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
@@ -301,7 +301,7 @@ and open the template in the editor.
                     <center><p><b id="vrDomicilio"></b></p></center>
                     <center><p><b id="vrTotal"></b></p></center>
                     <div class="ui-field-contain">
-                        <label for="direccion"><b>Modificar Dirección:</b></label>
+                        <label for="direccion"><b>(*)Modificar Dirección:</b></label>
                         <input type="text" name="direccion" id="direccion" placeholder="Ej: Cra 5c # 20 - 54" value="">
                     </div>
                     <div class="ui-field-contain">
@@ -309,7 +309,7 @@ and open the template in the editor.
                         <input type="text" name="referencias" id="referencias" placeholder="Ej: Sicarare, Junto al Parque Blanco" value="">
                     </div>
                     <div class="ui-field-contain">
-                        <label for="telefono"><b>Teléfono:</b></label>
+                        <label for="telefono"><b>(*)Teléfono:</b></label>
                         <input type="number" max="12" min="8" name="telefono" id="telefono" placeholder="Teléfono" value="">
                     </div>
                     <div class="ui-field-contain">
