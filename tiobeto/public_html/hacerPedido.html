@@ -33,14 +33,15 @@ and open the template in the editor.
             function onDeviceReady() {
                 $("#btnPopup").hide();
                 consultarMenu();
-                FB.init({appId: "1567917880103520", nativeInterface: CDV.FB, useCachedDialogs: false});
-                initPush();
                 var d = new Date();
-                if(d.getHours() > 23){
+                if(d.getHours() > 23 && d.getHours() < 7){
                     vrDomicilio=3000;
                 }else{
                     vrDomicilio=2000;
                 }
+                FB.init({appId: "1567917880103520", nativeInterface: CDV.FB, useCachedDialogs: false});
+                initPush();
+                
             }
             function getLoginStatus() {
                 FB.getLoginStatus(function(response) {
@@ -242,6 +243,7 @@ and open the template in the editor.
                             $("#titulo").text("Carrito de Compras Vacio");
                             localStorage.setItem("rows", "false");
                         } else {
+                            $("#vrDomicilio").append("Valor del Domicilio: $" + vrDomicilio);
                             $("#vrTotal").append("Total: $" + results.rows.item(0).total + vrDomicilio);
                         }
 
@@ -274,7 +276,7 @@ and open the template in the editor.
                 <div id="mapa" style="width: 100%"></div>
                 <hr>
                 <div class="ui-body ui-body-a ui-corner-all">
-                    <center><p><b id="vrDomicilio">Valor del Domicilio: $2000</b></p></center>
+                    <center><p><b id="vrDomicilio"></b></p></center>
                     <center><p><b id="vrTotal"></b></p></center>
                     <div class="ui-field-contain">
                         <label for="direccion"><b>Modificar Dirección:</b></label>
