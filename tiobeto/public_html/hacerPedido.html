@@ -242,6 +242,19 @@ and open the template in the editor.
             }
 
             function consultarCosto() {
+                var $this = $(this),
+                        theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+                        msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+                        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+                        textonly = !!$this.jqmData("textonly");
+                html = $this.jqmData("html") || "";
+                $.mobile.loading("show", {
+                    text: msgText,
+                    textVisible: textVisible,
+                    theme: theme,
+                    textonly: textonly,
+                    html: html
+                });
                 var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
                 db.transaction(function (tx) {
                     tx.executeSql('SELECT SUM(precio*cantidad) as total FROM listaBeto', [], function (tx, results) {
@@ -252,7 +265,8 @@ and open the template in the editor.
                         } else {
 
                             $("#vrDomicilio").append("Valor del Domicilio: $" + vrDomicilio);
-                            $("#vrTotal").append("Total: $" + parseInt(results.rows.item(0).total) + parseInt(vrDomicilio));
+                            var total = parseInt(results.rows.item(0).total) + vrDomicilio;
+                            $("#vrTotal").append("Total: $" + total);
                         }
 
                     });
