@@ -252,7 +252,7 @@ and open the template in the editor.
                         } else {
 
                             $("#vrDomicilio").append("Valor del Domicilio: $" + vrDomicilio);
-                            $("#vrTotal").append("Total: $" + results.rows.item(0).total + vrDomicilio);
+                            $("#vrTotal").append("Total: $" + parseInt(results.rows.item(0).total) + parseInt(vrDomicilio));
                         }
 
                     });
