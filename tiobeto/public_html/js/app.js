@@ -67,6 +67,7 @@ function banner() {
             .done(function(msg) {
                 $("#slider").hide();
                 var json = eval("(" + msg + ")");
+                alert(msg);
                 for (var i = 0; i < json.total; i++) {
                     var j = i+1;
                     $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/' + j + '.jpg" alt="promocion"></li>');
