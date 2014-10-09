@@ -69,12 +69,12 @@ function banner() {
                 var json = eval("(" + msg + ")");
                 for (var i = 0; i < json.total; i++) {
                     var j = i+1;
-                    $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/' + j + '.jpg" alt=""></li>');
+                    $("#slider").append('<li><img src="http://app.lasperrasdeltiobeto.com/utiles/imagenes/banner/' + j + '.jpg" alt="promocion"></li>');
                 }
                 $("#slider").show();
                 $("#slider").responsiveSlides({
                     maxwidth: 800,
-                    speed: 5000
+                    speed: 4000
                 });
                 menu();
             });
