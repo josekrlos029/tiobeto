@@ -25,7 +25,7 @@ and open the template in the editor.
 
             document.addEventListener("deviceready", onDeviceReady, false);
             document.addEventListener("menubutton", onMenuKeyDown, false);
-
+            var vrDomicilio=0;
             function onMenuKeyDown() {
                 $("#btnMenu").click();
             }
@@ -35,6 +35,12 @@ and open the template in the editor.
                 consultarMenu();
                 FB.init({appId: "1567917880103520", nativeInterface: CDV.FB, useCachedDialogs: false});
                 initPush();
+                var d = new Date();
+                if(d.getHours() > 23){
+                    vrDomicilio=3000;
+                }else{
+                    vrDomicilio=2000;
+                }
             }
             function getLoginStatus() {
                 FB.getLoginStatus(function(response) {
@@ -226,6 +232,24 @@ and open the template in the editor.
                             $.mobile.loading("hide");
                         });
             }
+            
+            function consultarCosto() {
+                var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
+                db.transaction(function(tx) {
+                    tx.executeSql('SELECT SUM(precio*cantidad) as total FROM listaBeto', [], function(tx, results) {
+                        var len = results.rows.length;
+                        if (len == 0) {
+                            $("#titulo").text("Carrito de Compras Vacio");
+                            localStorage.setItem("rows", "false");
+                        } else {
+                            $("#vrTotal").append("Total: $" + results.rows.item(0).total + vrDomicilio);
+                        }
+
+                    });
+                });
+                $.mobile.loading( "hide" );
+            }
+
         </script>
     </head>
     <body>
@@ -250,7 +274,8 @@ and open the template in the editor.
                 <div id="mapa" style="width: 100%"></div>
                 <hr>
                 <div class="ui-body ui-body-a ui-corner-all">
-                    <center><p><b>Valor del Domicilio: $2000</b></p></center>
+                    <center><p><b id="vrDomicilio">Valor del Domicilio: $2000</b></p></center>
+                    <center><p><b id="vrTotal"></b></p></center>
                     <div class="ui-field-contain">
                         <label for="direccion"><b>Modificar Dirección:</b></label>
                         <input type="text" name="direccion" id="direccion" placeholder="Ej: Cra 5c # 20 - 54" value="">
