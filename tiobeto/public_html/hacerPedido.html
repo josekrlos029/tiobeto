@@ -31,13 +31,30 @@ and open the template in the editor.
             }
 
             function onDeviceReady() {
+                
+                var $this = $(this),
+                        theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+                        msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+                        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+                        textonly = !!$this.jqmData("textonly");
+                html = $this.jqmData("html") || "";
+                $.mobile.loading("show", {
+                    text: msgText,
+                    textVisible: textVisible,
+                    theme: theme,
+                    textonly: textonly,
+                    html: html
+                });
+                
                 $("#btnPopup").hide();
                 consultarMenu();
                 var d = new Date();
                 var h = parseInt(d.getHours());
                 if (h >= 16 && h < 7) {
+                    alert("1 "+h );
                     vrDomicilio = 3000;
                 } else {
+                    alert("2 "+h );
                     vrDomicilio = 2000;
                 }
                 consultarCosto();
@@ -243,19 +260,7 @@ and open the template in the editor.
             }
 
             function consultarCosto() {
-                var $this = $(this),
-                        theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
-                        msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
-                        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-                        textonly = !!$this.jqmData("textonly");
-                html = $this.jqmData("html") || "";
-                $.mobile.loading("show", {
-                    text: msgText,
-                    textVisible: textVisible,
-                    theme: theme,
-                    textonly: textonly,
-                    html: html
-                });
+                
                 var db = window.openDatabase("carritoBeto", "1.0", "listacompraDB", 1000000);
                 db.transaction(function (tx) {
                     tx.executeSql('SELECT SUM(precio*cantidad) as total FROM listaBeto', [], function (tx, results) {
