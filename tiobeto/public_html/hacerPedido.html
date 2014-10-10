@@ -50,12 +50,12 @@ and open the template in the editor.
                 consultarMenu();
                 var d = new Date();
                 var h = parseInt(d.getHours());
-                alert("0 "+h );
-                if (h >= 16 || h < 7) {
-                    alert("1 "+h );
+                
+                if (h >= 23 || h < 7) {
+                    
                     vrDomicilio = 3000;
                 } else {
-                    alert("2 "+h );
+                    
                     vrDomicilio = 2000;
                 }
                 consultarCosto();
@@ -153,7 +153,7 @@ and open the template in the editor.
                     data: data
                 })
                         .done(function (msg) {
-
+                            alert(msg);
                             var json = eval("(" + msg + ")");
                             if (json.msj == "exito") {
                                 alert("Tu pedido Llegará en cualquier momento ! ");
