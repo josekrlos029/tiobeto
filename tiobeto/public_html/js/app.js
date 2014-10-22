@@ -24,7 +24,7 @@ function init() {
 
     crearDb();
     banner();
-    initPush();
+    //initPush();
 }
 
 function initPush(){
