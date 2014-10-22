@@ -35,8 +35,7 @@ function cargarPagina(){
         data: {}
     })
             .done(function(msg) {
-                alert(msg);
-                
+               
                 $("#todo").html(msg);
                 $("#slider").hide();
                 $("#slider").responsiveSlides({
