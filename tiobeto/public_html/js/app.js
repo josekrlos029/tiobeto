@@ -38,7 +38,6 @@ function cargarPagina(){
                 
                 $("#slider").hide();
                 $("#todo").html(msg);
-                $("#slider").show(msg);
                 $("#slider").responsiveSlides({
                     maxwidth: 800,
                     speed: 400
