@@ -12,7 +12,7 @@ function init() {
             textonly = !!$this.jqmData("textonly");
     html = $this.jqmData("html") || "";
     $.mobile.loading("show", {
-        text: msgText,
+        text: "Cargando Datos...",
         textVisible: textVisible,
         theme: theme,
         textonly: textonly,
@@ -40,10 +40,13 @@ function cargarPagina(){
                 $("#todo").html(msg);
                 $("#slider").hide();
                 $("#slider").responsiveSlides({
-                    maxwidth: 800,
-                    speed: 400
-                });
+                        maxwidth: 800,
+                        speed: 400
+                    });
+                $("#slider").show();
                 setTimeout(function(){
+                    
+                    
                     $('#lista').trigger('create');
                     $(".l1").trigger('create');
                     $(".l2").trigger('create');
@@ -51,6 +54,7 @@ function cargarPagina(){
                     $("#carta").show();
                     consultarMenu();
                     consultarFooter();
+                    
                 },1500);
                 
             });
