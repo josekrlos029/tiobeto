@@ -65,7 +65,7 @@ function banner() {
         data: {}
     })
             .done(function(msg) {
-                alert(".");
+                
                 $("#slider").hide();
                 var json = eval("(" + msg + ")");
                 for (var i = 0; i < json.total; i++) {
@@ -95,6 +95,7 @@ function menu() {
         data: {}
     })
             .done(function(msg) {
+                alert(".");
                 $("#carta").hide();
                 $("#carta").html(msg);
 
