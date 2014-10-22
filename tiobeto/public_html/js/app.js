@@ -48,7 +48,6 @@ function cargarPagina(){
                 $(".l2").trigger('create');
                 setTimeout(function(){
                     
-                    
                     $("#carta").show();
                     consultarMenu();
                     consultarFooter();
@@ -66,7 +65,7 @@ function cargarPagina(){
                         textonly: textonly,
                         html: html
                     });
-                },2000);
+                },3000);
                 
                 
                 setTimeout(function(){
