@@ -69,7 +69,7 @@ function cargarPagina(){
                     $.mobile.loading("hide");
                     }, 5000);
                     
-                },3000);
+                },5000);
                 
                 
                 
