@@ -76,7 +76,10 @@ function banner() {
                     maxwidth: 800,
                     speed: 400
                 });
-                //menu();
+                setTimeout(function(){
+                    menu();
+                },1500);
+                
             });
 }
 
