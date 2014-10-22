@@ -48,10 +48,11 @@ function cargarPagina(){
                 $(".l2").trigger('create');
                 setTimeout(function(){
                     
-                    $.mobile.loading("hide");
+                    
                     $("#carta").show();
                     consultarMenu();
                     consultarFooter();
+                    $.mobile.loading("hide");
                     var $this = $(this),
                             theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
                             msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
@@ -68,16 +69,13 @@ function cargarPagina(){
                 },2000);
                 
                 
-                setTimeout(ocultarMensaje(), 5000);
+                setTimeout(function(){
+                    $.mobile.loading("hide");
+                }, 5000);
                 
             });
 }
 
-function ocultarMensaje(){
-    
-    $.mobile.loading("hide");
-    
-}
 
 function initPush(){
     var pushNotification = window.plugins.pushNotification;
