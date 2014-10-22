@@ -5,9 +5,6 @@
  */
 function init() {
 
-    consultarMenu();
-    consultarFooter();
-
     var $this = $(this),
             theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
             msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
@@ -23,8 +20,40 @@ function init() {
     });
 
     crearDb();
-    banner();
+    cargarPagina();
+    //banner();
     //initPush();
+}
+
+function cargarPagina(){
+    var url = "http://app.lasperrasdeltiobeto.com/restaurante/cargarPagina";
+    //var url = "/adminbeto/restaurante/menu";
+    //var url = "/domicilios/restaurante/menu";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {}
+    })
+            .done(function(msg) {
+                
+                $("#slider").hide();
+                $("#todo").html();
+                $("#slider").show(msg);
+                $("#slider").responsiveSlides({
+                    maxwidth: 800,
+                    speed: 400
+                });
+                setTimeout(function(){
+                    $('#lista').trigger('create');
+                    $(".l1").trigger('create');
+                    $(".l2").trigger('create');
+                    $.mobile.loading("hide");
+                    $("#carta").show();
+                    consultarMenu();
+                    consultarFooter();
+                },1500);
+                
+            });
 }
 
 function initPush(){
