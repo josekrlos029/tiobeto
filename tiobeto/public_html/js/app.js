@@ -65,12 +65,14 @@ function cargarPagina(){
                         textonly: textonly,
                         html: html
                     });
+                    setTimeout(function(){
+                    $.mobile.loading("hide");
+                    }, 5000);
+                    
                 },3000);
                 
                 
-                setTimeout(function(){
-                    $.mobile.loading("hide");
-                }, 5000);
+                
                 
             });
 }
