@@ -76,7 +76,7 @@ function banner() {
                     maxwidth: 800,
                     speed: 400
                 });
-                menu();
+                //menu();
             });
 }
 
