@@ -21,8 +21,8 @@ function init() {
 
     crearDb();
     cargarPagina();
-    //banner();
-    //initPush();
+    initPush();
+    
 }
 
 function cargarPagina(){
