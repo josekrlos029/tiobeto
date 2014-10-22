@@ -52,21 +52,22 @@ function cargarPagina(){
                     $("#carta").show();
                     consultarMenu();
                     consultarFooter();
-                    
+                    var $this = $(this),
+                            theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+                            msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+                            textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+                            textonly = !!$this.jqmData("textonly");
+                    html = $this.jqmData("html") || "";
+                    $.mobile.loading("show", {
+                        text: "Datos Cargados, Espere un Momento...",
+                        textVisible: true,
+                        theme: theme,
+                        textonly: textonly,
+                        html: html
+                    });
                 },2000);
-                var $this = $(this),
-                        theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
-                        msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
-                        textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-                        textonly = !!$this.jqmData("textonly");
-                html = $this.jqmData("html") || "";
-                $.mobile.loading("show", {
-                    text: "Datos Cargados, Espere un Momento...",
-                    textVisible: true,
-                    theme: theme,
-                    textonly: textonly,
-                    html: html
-                });
+                
+                
                 setTimeout(ocultarMensaje(), 5000);
                 
             });
