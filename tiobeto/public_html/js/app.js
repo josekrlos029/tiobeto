@@ -43,36 +43,38 @@ function cargarPagina(){
                         speed: 400
                     });
                 $("#slider").show();
-                $('#lista').trigger('create');
-                $(".l1").trigger('create');
-                $(".l2").trigger('create');
+                //TODO: mostrar primero las imagenes, y luego mostrar la carta
                 setTimeout(function(){
+                    $('#lista').trigger('create');
+                    $(".l1").trigger('create');
+                    $(".l2").trigger('create');
                     
-                    $("#carta").show();
-                    consultarMenu();
-                    consultarFooter();
-                    $.mobile.loading("hide");
-                    var $this = $(this),
-                            theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
-                            msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
-                            textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-                            textonly = !!$this.jqmData("textonly");
-                    html = $this.jqmData("html") || "";
-                    $.mobile.loading("show", {
-                        text: "Datos Cargados, Espere un Momento...",
-                        textVisible: true,
-                        theme: theme,
-                        textonly: textonly,
-                        html: html
-                    });
                     setTimeout(function(){
-                    $.mobile.loading("hide");
-                    }, 5000);
                     
-                },5000);
-                
-                
-                
+                        $("#carta").show();
+                        consultarMenu();
+                        consultarFooter();
+                        $.mobile.loading("hide");
+                        var $this = $(this),
+                                theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+                                msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+                                textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+                                textonly = !!$this.jqmData("textonly");
+                        html = $this.jqmData("html") || "";
+                        $.mobile.loading("show", {
+                            text: "Datos Cargados, Espere un Momento...",
+                            textVisible: true,
+                            theme: theme,
+                            textonly: textonly,
+                            html: html
+                        });
+                        setTimeout(function(){
+                        $.mobile.loading("hide");
+                        }, 5000);
+                        
+                    },5000);
+                    
+                },3000);
                 
             });
 }
