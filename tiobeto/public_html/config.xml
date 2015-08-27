@@ -69,7 +69,7 @@
         <gap:platform name="ios" />
     </gap:platforms>
     
-    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
+    <!--<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />-->
     <!--<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
         <param name="APP_ID" value="1428385527442767" />
         <param name="APP_NAME" value="tudomicilio" />
