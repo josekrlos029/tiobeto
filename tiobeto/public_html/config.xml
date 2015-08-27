@@ -15,7 +15,7 @@
         José Carlos Jimenez Montenegro 
     </author>
 
-    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="phonegap-version" value="3.7.0" />
     <preference name="orientation" value="portrait" />
     
     <icon src="image/IconoAndroid.png" gap:role="default" />
